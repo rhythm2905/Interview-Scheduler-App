@@ -18,7 +18,7 @@ module.exports = (app, mysqlConnection)=> {
             details: []
         };
         await new Promise((resolve, reject) => {
-            mysqlConnection.query('select * from interview', (err, result) => {
+            mysqlConnection.query('select I.interview_id, I.start_time, I.duration, U.email as interviewer, u2.email as interviewee from interview I, user U , user u2 where U.u_id = I.interviewer AND  u2.u_id = I.interviewee', (err, result) => {
                 resolve(result);
             });
         }).then( result => {
@@ -28,10 +28,13 @@ module.exports = (app, mysqlConnection)=> {
         }).catch();
         //var jsonParsed = JSON.parse(interviews);
         //res.json(interviews);
-        res.render("Intro.ejs");
+        res.render("Intro.ejs",{interviews: interviews});
     });
     app.get('/set',function(req,res){
-        res.render("index.html");
+        res.render("index.ejs");
+    });
+    app.get('/update',function(req,res){
+        res.render("index2.ejs");
     });
 
     app.post('/set-interview', async (req, res) => {
@@ -94,7 +97,7 @@ module.exports = (app, mysqlConnection)=> {
                 mysqlConnection.query('insert into interview(interviewee, interviewer, start_time, duration) values ?', [values], (err, result) => {
                     resolve(result);
                 });
-            }).then( result => res.send("Done")).catch();
+            }).then( result => res.redirect("/")).catch();
         } else {
             res.json({error: "Please enter two appropriate users."});
         }

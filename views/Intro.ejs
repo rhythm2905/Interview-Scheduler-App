@@ -3,12 +3,11 @@
 <head>
 	<title></title>
 	<style type="text/css">
-		body{<style type="text/css">
+		body{
 		background: #5D4157;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #A8CABA, #5D4157);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #A8CABA, #5D4157); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-}
+    background: -webkit-linear-gradient(to right, #A8CABA, #5D4157);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #A8CABA, #5D4157); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+   }
 	</style>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
@@ -21,7 +20,7 @@ background: linear-gradient(to right, #A8CABA, #5D4157); /* W3C, IE 10+/ Edge, F
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Schedule<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/">Schedule<span class="sr-only"></span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/set">Set</a>
@@ -33,8 +32,17 @@ background: linear-gradient(to right, #A8CABA, #5D4157); /* W3C, IE 10+/ Edge, F
   </div>
 </nav>
 
-
-
+<table>
+<% for(var i=0; i < interviews.details.length; i++) { %>
+   <tr>
+     <td><%= interviews.details[i].interview_id %></td>
+     <td><%= interviews.details[i].start_time %></td>
+     <td><%= interviews.details[i].duration %></td>
+     <td><%= interviews.details[i].interviewer %></td>
+     <td><%= interviews.details[i].interviewee %></td>
+   </tr>
+<% } %>
+</table>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
