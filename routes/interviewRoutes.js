@@ -2,18 +2,18 @@ const mysql = require('mysql');
 const chalk = require('chalk');
 
 module.exports = (app, mysqlConnection)=> {
-    app.get('/', async (req, res) => {
-        let f = null;
-        await new Promise((resolve, reject) => {
-            values = [["3", "rhythmpaliwal@ib.com", "IB"]];
-            mysqlConnection.query('insert into users values ?', [values], (err, result) => {
-                resolve(result);
-            });
-        }).then( result => console.log(result)).catch();
-        res.send(f ? "Done fetching" : "error");
-    });
+    // app.get('/', async (req, res) => {
+    //     let f = null;
+    //     await new Promise((resolve, reject) => {
+    //         values = [["3", "rhythmpaliwal@ib.com", "IB"]];
+    //         mysqlConnection.query('insert into users values ?', [values], (err, result) => {
+    //             resolve(result);
+    //         });
+    //     }).then( result => console.log(result)).catch();
+    //     res.send(f ? "Done fetching" : "error");
+    // });
 
-    app.get('/show-interview', async (req, res) => {
+    app.get('/', async (req, res) => {
         let interviews = {
             details: []
         };
@@ -26,7 +26,12 @@ module.exports = (app, mysqlConnection)=> {
                 interviews.details.push(result[row]);
             }
         }).catch();
-        res.json(interviews);
+        //var jsonParsed = JSON.parse(interviews);
+        //res.json(interviews);
+        res.render("Intro.ejs");
+    });
+    app.get('/set',function(req,res){
+        res.render("index.html");
     });
 
     app.post('/set-interview', async (req, res) => {

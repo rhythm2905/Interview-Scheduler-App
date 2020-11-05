@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const connectDB = require("./database/index.js");
 const mysql = require('mysql');
 const app = express();
-
+//app.set('view engine', 'ejs');
 const mysqlConnection = mysql.createConnection({
     host: process.env.HOST,
     user: process.env.USERNAME,
